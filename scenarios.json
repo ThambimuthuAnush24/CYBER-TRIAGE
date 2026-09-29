@@ -1,0 +1,209 @@
+[
+  {
+    "id": "T01",
+    "name": "Ransomware on a critical server",
+    "facts": {
+      "files_encrypted": "yes",
+      "ransom_note": "yes",
+      "critical_asset": "yes",
+      "backup_available": "yes"
+    },
+    "expected_priority": "critical",
+    "expected_categories": [
+      "ransomware"
+    ],
+    "expected_rules": [
+      "R07",
+      "R24",
+      "R33",
+      "R36",
+      "R37",
+      "R40"
+    ]
+  },
+  {
+    "id": "T02",
+    "name": "Phishing with credential exposure",
+    "facts": {
+      "suspicious_email": "yes",
+      "suspicious_link": "yes",
+      "credentials_entered": "yes"
+    },
+    "expected_priority": "high",
+    "expected_categories": [
+      "phishing",
+      "credential_exposure",
+      "account_compromise"
+    ],
+    "expected_rules": [
+      "R02",
+      "R03",
+      "R12",
+      "R21"
+    ]
+  },
+  {
+    "id": "T03",
+    "name": "Suspected distributed denial of service",
+    "facts": {
+      "traffic_spike": "yes",
+      "service_unavailable": "yes",
+      "distributed_sources": "yes",
+      "critical_asset": "yes"
+    },
+    "expected_priority": "critical",
+    "expected_categories": [
+      "denial_of_service"
+    ],
+    "expected_rules": [
+      "R16",
+      "R23",
+      "R27",
+      "R39"
+    ]
+  },
+  {
+    "id": "T04",
+    "name": "Possible data theft",
+    "facts": {
+      "outbound_spike": "yes",
+      "unapproved_destination": "yes",
+      "sensitive_data_access": "yes",
+      "sensitive_data": "yes"
+    },
+    "expected_priority": "critical",
+    "expected_categories": [
+      "data_exfiltration"
+    ],
+    "expected_rules": [
+      "R14",
+      "R22",
+      "R26",
+      "R38"
+    ]
+  },
+  {
+    "id": "T05",
+    "name": "Failed login attack",
+    "facts": {
+      "many_failed_logins": "yes",
+      "unknown_source": "yes"
+    },
+    "expected_priority": "medium",
+    "expected_categories": [
+      "brute_force"
+    ],
+    "expected_rules": [
+      "R09",
+      "R19"
+    ]
+  },
+  {
+    "id": "T06",
+    "name": "Insufficient information",
+    "facts": {},
+    "expected_priority": "unassessed",
+    "expected_categories": [],
+    "expected_rules": []
+  },
+  {
+    "id": "T07",
+    "name": "Explicit negative evidence",
+    "facts": {
+      "files_encrypted": "yes",
+      "ransom_note": "no",
+      "malware_alert": "no"
+    },
+    "expected_priority": "unassessed",
+    "expected_categories": [],
+    "expected_rules": []
+  },
+  {
+    "id": "T08",
+    "name": "Malware spreading",
+    "facts": {
+      "malware_alert": "yes",
+      "multiple_hosts": "yes",
+      "active_spread": "yes"
+    },
+    "expected_priority": "critical",
+    "expected_categories": [
+      "malware",
+      "widespread_malware"
+    ],
+    "expected_rules": [
+      "R05",
+      "R17",
+      "R20",
+      "R28"
+    ]
+  },
+  {
+    "id": "T09",
+    "name": "Ransomware without backup",
+    "facts": {
+      "files_encrypted": "yes",
+      "ransom_note": "yes",
+      "backup_available": "no"
+    },
+    "expected_priority": "critical",
+    "expected_categories": [
+      "ransomware"
+    ],
+    "expected_rules": [
+      "R07",
+      "R41"
+    ]
+  },
+  {
+    "id": "T10",
+    "name": "Privileged identity compromise",
+    "facts": {
+      "unusual_login": "yes",
+      "user_denies_login": "yes",
+      "privileged_account": "yes"
+    },
+    "expected_priority": "critical",
+    "expected_categories": [
+      "account_compromise"
+    ],
+    "expected_rules": [
+      "R11",
+      "R25"
+    ]
+  },
+  {
+    "id": "T11",
+    "name": "Malware with business impact",
+    "facts": {
+      "malware_alert": "yes",
+      "business_disruption": "yes"
+    },
+    "expected_priority": "critical",
+    "expected_categories": [
+      "malware"
+    ],
+    "expected_rules": [
+      "R05",
+      "R29"
+    ]
+  },
+  {
+    "id": "T12",
+    "name": "Phishing attachment",
+    "facts": {
+      "suspicious_email": "yes",
+      "sender_mismatch": "yes",
+      "attachment_executed": "yes"
+    },
+    "expected_priority": "high",
+    "expected_categories": [
+      "phishing",
+      "malware"
+    ],
+    "expected_rules": [
+      "R01",
+      "R04"
+    ]
+  }
+]

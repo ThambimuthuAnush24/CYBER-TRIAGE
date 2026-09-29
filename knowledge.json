@@ -1,0 +1,1040 @@
+{
+  "version": "1.0.0",
+  "facts": [
+    {
+      "id": "suspicious_email",
+      "group": "Email",
+      "label": "Suspicious message received",
+      "help": "An unexpected message asks for an unusual action."
+    },
+    {
+      "id": "sender_mismatch",
+      "group": "Email",
+      "label": "Sender identity mismatch",
+      "help": "The actual sender or reply address differs from the claimed identity."
+    },
+    {
+      "id": "suspicious_link",
+      "group": "Email",
+      "label": "Suspicious destination",
+      "help": "The link destination has been flagged or does not match the claimed service. Do not open it to check."
+    },
+    {
+      "id": "credentials_entered",
+      "group": "Email",
+      "label": "Credentials entered on suspect page",
+      "help": "The user reports entering a password into the page linked by this message."
+    },
+    {
+      "id": "attachment_executed",
+      "group": "Email",
+      "label": "Attachment or downloaded file executed",
+      "help": "The user ran a file associated with the suspect message."
+    },
+    {
+      "id": "malware_alert",
+      "group": "Endpoint",
+      "label": "Credible malware alert",
+      "help": "Endpoint protection reported a malicious file or process; record the alert separately."
+    },
+    {
+      "id": "suspicious_process",
+      "group": "Endpoint",
+      "label": "Unexpected process observed",
+      "help": "An unexpected process is linked to the alert or reported event."
+    },
+    {
+      "id": "files_encrypted",
+      "group": "Endpoint",
+      "label": "Unexpected file encryption",
+      "help": "Files changed unexpectedly and cannot be opened; normal authorized encryption is excluded."
+    },
+    {
+      "id": "ransom_note",
+      "group": "Endpoint",
+      "label": "Ransom demand present",
+      "help": "A demand for payment or extortion message is present."
+    },
+    {
+      "id": "security_disabled",
+      "group": "Endpoint",
+      "label": "Security controls disabled unexpectedly",
+      "help": "Security software or logging was disabled without an approved change."
+    },
+    {
+      "id": "persistence_found",
+      "group": "Endpoint",
+      "label": "Unauthorized persistence found",
+      "help": "An unapproved startup item, scheduled task or service is linked to suspicious activity."
+    },
+    {
+      "id": "many_failed_logins",
+      "group": "Identity",
+      "label": "Unusual repeated login failures",
+      "help": "Failures materially exceed the normal baseline for the same account or service."
+    },
+    {
+      "id": "unknown_source",
+      "group": "Identity",
+      "label": "Unrecognized login source",
+      "help": "The source is not recognized after checking normal access patterns."
+    },
+    {
+      "id": "successful_login_after_failures",
+      "group": "Identity",
+      "label": "Success follows suspicious failures",
+      "help": "The same account has a successful login correlated with the unusual failures."
+    },
+    {
+      "id": "unusual_login",
+      "group": "Identity",
+      "label": "Anomalous successful login",
+      "help": "A successful login is outside the usual device, time or location pattern."
+    },
+    {
+      "id": "user_denies_login",
+      "group": "Identity",
+      "label": "User denies the login",
+      "help": "The account owner confirms they did not perform this particular successful login."
+    },
+    {
+      "id": "privileged_account",
+      "group": "Impact",
+      "label": "Privileged account affected",
+      "help": "The affected identity has administrator or equivalent elevated permissions."
+    },
+    {
+      "id": "mfa_prompts",
+      "group": "Identity",
+      "label": "Unexpected repeated MFA prompts",
+      "help": "The user received authentication approval prompts they did not initiate."
+    },
+    {
+      "id": "mfa_approved",
+      "group": "Identity",
+      "label": "Unexpected MFA prompt approved",
+      "help": "The user approved one of those unsolicited prompts."
+    },
+    {
+      "id": "outbound_spike",
+      "group": "Network",
+      "label": "Unusual outbound transfer volume",
+      "help": "Outbound volume materially exceeds the expected baseline for this asset."
+    },
+    {
+      "id": "unapproved_destination",
+      "group": "Network",
+      "label": "Transfer destination unapproved",
+      "help": "The external destination is not approved for the observed data transfer."
+    },
+    {
+      "id": "sensitive_data_access",
+      "group": "Network",
+      "label": "Sensitive data accessed before transfer",
+      "help": "Logs correlate access to sensitive data with the unusual transfer."
+    },
+    {
+      "id": "dlp_alert",
+      "group": "Network",
+      "label": "Credible data loss prevention alert",
+      "help": "A DLP alert identifies a suspect data transfer requiring review."
+    },
+    {
+      "id": "traffic_spike",
+      "group": "Network",
+      "label": "Unusual inbound traffic volume",
+      "help": "Requests or traffic materially exceed the expected baseline."
+    },
+    {
+      "id": "service_unavailable",
+      "group": "Network",
+      "label": "Service unavailable or degraded",
+      "help": "Users or health checks confirm a current service impact."
+    },
+    {
+      "id": "distributed_sources",
+      "group": "Network",
+      "label": "Traffic from many sources",
+      "help": "The abnormal traffic is distributed across many apparent sources."
+    },
+    {
+      "id": "multiple_hosts",
+      "group": "Impact",
+      "label": "Several hosts affected",
+      "help": "The same incident has correlated evidence on more than one host."
+    },
+    {
+      "id": "critical_asset",
+      "group": "Impact",
+      "label": "Critical business asset affected",
+      "help": "The organization classifies the affected system as operationally critical."
+    },
+    {
+      "id": "sensitive_data",
+      "group": "Impact",
+      "label": "Sensitive information involved",
+      "help": "The affected asset or account handles sensitive information."
+    },
+    {
+      "id": "active_spread",
+      "group": "Impact",
+      "label": "Active spread observed",
+      "help": "Correlated evidence indicates the same activity is spreading now."
+    },
+    {
+      "id": "backup_available",
+      "group": "Impact",
+      "label": "Known usable isolated backup",
+      "help": "An isolated backup exists and its usability is known; recovery still requires approval."
+    },
+    {
+      "id": "business_disruption",
+      "group": "Impact",
+      "label": "Material business disruption",
+      "help": "The event prevents an important business activity from operating normally."
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "NIST SP 800-61 Revision 3",
+      "year": "2025",
+      "url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+      "scope": "Incident analysis, prioritization, response and recovery; conceptual basis, not the exact project rules."
+    },
+    {
+      "id": "S2",
+      "title": "CISA StopRansomware Guide",
+      "year": "2023",
+      "url": "https://www.cisa.gov/stopransomware/ransomware-guide",
+      "scope": "Ransomware response: coordinated isolation, preserving evidence and recovery planning."
+    },
+    {
+      "id": "S3",
+      "title": "MITRE ATT&CK T1566 Phishing",
+      "year": "living resource",
+      "url": "https://attack.mitre.org/techniques/T1566/",
+      "scope": "Malicious messages, links, attachments and correlated execution."
+    },
+    {
+      "id": "S4",
+      "title": "MITRE ATT&CK T1110 Brute Force",
+      "year": "living resource",
+      "url": "https://attack.mitre.org/techniques/T1110/",
+      "scope": "Repeated authentication attempts; project uses a qualitative local baseline."
+    },
+    {
+      "id": "S5",
+      "title": "MITRE ATT&CK T1041 Exfiltration Over C2 Channel",
+      "year": "living resource",
+      "url": "https://attack.mitre.org/techniques/T1041/",
+      "scope": "Outbound traffic anomalies correlated with data access; does not prove that every transfer uses C2."
+    },
+    {
+      "id": "S6",
+      "title": "MITRE ATT&CK T1498 Network Denial of Service",
+      "year": "living resource",
+      "url": "https://attack.mitre.org/techniques/T1498/",
+      "scope": "Network traffic used to reduce service availability."
+    },
+    {
+      "id": "S7",
+      "title": "SWI-Prolog HTTP server documentation",
+      "year": "living resource",
+      "url": "https://www.swi-prolog.org/pldoc/man?section=httpserver",
+      "scope": "Prolog ecosystem reference; this project uses a Python local HTTP adapter and a SWI-Prolog subprocess."
+    },
+    {
+      "id": "P1",
+      "title": "Project triage policy version 1",
+      "year": "2026",
+      "url": "",
+      "scope": "Author-designed conjunctions, priorities and follow-up actions. Not an official standard or expert-validated scoring system."
+    }
+  ],
+  "rules": [
+    {
+      "id": "R01",
+      "conditions": [
+        {
+          "fact": "suspicious_email",
+          "value": "yes"
+        },
+        {
+          "fact": "sender_mismatch",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "phishing",
+      "explanation": "The reported message and identity mismatch support suspected phishing.",
+      "sources": [
+        "S3",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R02",
+      "conditions": [
+        {
+          "fact": "suspicious_email",
+          "value": "yes"
+        },
+        {
+          "fact": "suspicious_link",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "phishing",
+      "explanation": "A suspect message links to a suspect destination.",
+      "sources": [
+        "S3",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R03",
+      "conditions": [
+        {
+          "fact": "phishing",
+          "value": "yes"
+        },
+        {
+          "fact": "credentials_entered",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "credential_exposure",
+      "explanation": "Credentials were supplied through a suspected phishing route.",
+      "sources": [
+        "S3",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R04",
+      "conditions": [
+        {
+          "fact": "phishing",
+          "value": "yes"
+        },
+        {
+          "fact": "attachment_executed",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "malware",
+      "explanation": "Execution following suspected phishing requires malware investigation.",
+      "sources": [
+        "S3",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R05",
+      "conditions": [
+        {
+          "fact": "malware_alert",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "malware",
+      "explanation": "A credible endpoint alert supports suspected malware.",
+      "sources": [
+        "S2",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R06",
+      "conditions": [
+        {
+          "fact": "suspicious_process",
+          "value": "yes"
+        },
+        {
+          "fact": "persistence_found",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "malware",
+      "explanation": "An unexpected process plus unauthorized persistence warrants investigation.",
+      "sources": [
+        "S2",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R07",
+      "conditions": [
+        {
+          "fact": "files_encrypted",
+          "value": "yes"
+        },
+        {
+          "fact": "ransom_note",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "ransomware",
+      "explanation": "Unexpected encryption together with a ransom demand supports suspected ransomware.",
+      "sources": [
+        "S2",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R08",
+      "conditions": [
+        {
+          "fact": "files_encrypted",
+          "value": "yes"
+        },
+        {
+          "fact": "malware",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "ransomware",
+      "explanation": "Unexpected encryption and suspected malware support a ransomware hypothesis.",
+      "sources": [
+        "S2",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R09",
+      "conditions": [
+        {
+          "fact": "many_failed_logins",
+          "value": "yes"
+        },
+        {
+          "fact": "unknown_source",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "brute_force",
+      "explanation": "Repeated failures from an unrecognized source support an authentication attack hypothesis.",
+      "sources": [
+        "S4",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R10",
+      "conditions": [
+        {
+          "fact": "brute_force",
+          "value": "yes"
+        },
+        {
+          "fact": "successful_login_after_failures",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "account_compromise",
+      "explanation": "Success following correlated suspicious failures supports suspected account compromise.",
+      "sources": [
+        "S4",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R11",
+      "conditions": [
+        {
+          "fact": "unusual_login",
+          "value": "yes"
+        },
+        {
+          "fact": "user_denies_login",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "account_compromise",
+      "explanation": "An anomalous successful login denied by the owner warrants compromise investigation.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R12",
+      "conditions": [
+        {
+          "fact": "credential_exposure",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "account_compromise",
+      "explanation": "Exposed credentials create a suspected compromise risk even if subsequent use is unconfirmed.",
+      "sources": [
+        "S3",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R13",
+      "conditions": [
+        {
+          "fact": "mfa_prompts",
+          "value": "yes"
+        },
+        {
+          "fact": "mfa_approved",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "account_compromise",
+      "explanation": "Approving an unsolicited prompt supports an account compromise hypothesis.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R14",
+      "conditions": [
+        {
+          "fact": "outbound_spike",
+          "value": "yes"
+        },
+        {
+          "fact": "unapproved_destination",
+          "value": "yes"
+        },
+        {
+          "fact": "sensitive_data_access",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "data_exfiltration",
+      "explanation": "Correlated sensitive data access and unusual unapproved outbound transfer support suspected data theft.",
+      "sources": [
+        "S5",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R15",
+      "conditions": [
+        {
+          "fact": "dlp_alert",
+          "value": "yes"
+        },
+        {
+          "fact": "unapproved_destination",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "data_exfiltration",
+      "explanation": "A credible data loss alert and unapproved destination support investigation of data theft.",
+      "sources": [
+        "S5",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R16",
+      "conditions": [
+        {
+          "fact": "traffic_spike",
+          "value": "yes"
+        },
+        {
+          "fact": "service_unavailable",
+          "value": "yes"
+        },
+        {
+          "fact": "distributed_sources",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "denial_of_service",
+      "explanation": "Distributed abnormal traffic coincides with an availability impact.",
+      "sources": [
+        "S6",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R17",
+      "conditions": [
+        {
+          "fact": "malware",
+          "value": "yes"
+        },
+        {
+          "fact": "multiple_hosts",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "widespread_malware",
+      "explanation": "Malware indicators occur on multiple correlated hosts.",
+      "sources": [
+        "S2",
+        "P1"
+      ],
+      "kind": "indicator heuristic"
+    },
+    {
+      "id": "R18",
+      "conditions": [
+        {
+          "fact": "phishing",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "priority_medium",
+      "explanation": "Suspected phishing requires analyst triage.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "project priority policy"
+    },
+    {
+      "id": "R19",
+      "conditions": [
+        {
+          "fact": "brute_force",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "priority_medium",
+      "explanation": "An authentication attack hypothesis requires analyst triage.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "project priority policy"
+    },
+    {
+      "id": "R20",
+      "conditions": [
+        {
+          "fact": "malware",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "priority_high",
+      "explanation": "This suspected incident category receives high priority under project policy.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "project priority policy"
+    },
+    {
+      "id": "R21",
+      "conditions": [
+        {
+          "fact": "account_compromise",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "priority_high",
+      "explanation": "This suspected incident category receives high priority under project policy.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "project priority policy"
+    },
+    {
+      "id": "R22",
+      "conditions": [
+        {
+          "fact": "data_exfiltration",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "priority_high",
+      "explanation": "This suspected incident category receives high priority under project policy.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "project priority policy"
+    },
+    {
+      "id": "R23",
+      "conditions": [
+        {
+          "fact": "denial_of_service",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "priority_high",
+      "explanation": "This suspected incident category receives high priority under project policy.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "project priority policy"
+    },
+    {
+      "id": "R24",
+      "conditions": [
+        {
+          "fact": "ransomware",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "priority_critical",
+      "explanation": "Suspected ransomware receives the highest project priority.",
+      "sources": [
+        "S2",
+        "P1"
+      ],
+      "kind": "project priority policy"
+    },
+    {
+      "id": "R25",
+      "conditions": [
+        {
+          "fact": "account_compromise",
+          "value": "yes"
+        },
+        {
+          "fact": "privileged_account",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "priority_critical",
+      "explanation": "An affected privileged identity increases potential impact.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "project priority policy"
+    },
+    {
+      "id": "R26",
+      "conditions": [
+        {
+          "fact": "data_exfiltration",
+          "value": "yes"
+        },
+        {
+          "fact": "sensitive_data",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "priority_critical",
+      "explanation": "Suspected data theft involving sensitive information is escalated.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "project priority policy"
+    },
+    {
+      "id": "R27",
+      "conditions": [
+        {
+          "fact": "denial_of_service",
+          "value": "yes"
+        },
+        {
+          "fact": "critical_asset",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "priority_critical",
+      "explanation": "Availability loss involving a critical asset is escalated.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "project priority policy"
+    },
+    {
+      "id": "R28",
+      "conditions": [
+        {
+          "fact": "widespread_malware",
+          "value": "yes"
+        },
+        {
+          "fact": "active_spread",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "priority_critical",
+      "explanation": "Multi-host malware with observed spread requires urgent coordination.",
+      "sources": [
+        "S2",
+        "P1"
+      ],
+      "kind": "project priority policy"
+    },
+    {
+      "id": "R29",
+      "conditions": [
+        {
+          "fact": "priority_high",
+          "value": "yes"
+        },
+        {
+          "fact": "business_disruption",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "priority_critical",
+      "explanation": "High-priority incident plus material disruption is escalated.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "project priority policy"
+    },
+    {
+      "id": "R30",
+      "conditions": [
+        {
+          "fact": "phishing",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "action_preserve_email",
+      "explanation": "Retain the original message and headers; avoid interacting with its links or attachments.",
+      "sources": [
+        "S3",
+        "P1"
+      ],
+      "kind": "response recommendation"
+    },
+    {
+      "id": "R31",
+      "conditions": [
+        {
+          "fact": "account_compromise",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "action_secure_identity",
+      "explanation": "Ask the identity administrator to restrict affected access, revoke sessions and reset credentials from a trusted device; review MFA and account changes.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "response recommendation"
+    },
+    {
+      "id": "R32",
+      "conditions": [
+        {
+          "fact": "malware",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "action_isolate",
+      "explanation": "Have authorized responders coordinate network isolation of affected devices while preserving evidence.",
+      "sources": [
+        "S2",
+        "P1"
+      ],
+      "kind": "response recommendation"
+    },
+    {
+      "id": "R33",
+      "conditions": [
+        {
+          "fact": "ransomware",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "action_isolate",
+      "explanation": "Have authorized responders coordinate network isolation of affected devices while preserving evidence.",
+      "sources": [
+        "S2",
+        "P1"
+      ],
+      "kind": "response recommendation"
+    },
+    {
+      "id": "R34",
+      "conditions": [
+        {
+          "fact": "priority_medium",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "action_preserve_evidence",
+      "explanation": "Record timestamps, affected assets and original alerts; preserve relevant logs with an evidence handling record.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "response recommendation"
+    },
+    {
+      "id": "R35",
+      "conditions": [
+        {
+          "fact": "priority_high",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "action_preserve_evidence",
+      "explanation": "Record timestamps, affected assets and original alerts; preserve relevant logs with an evidence handling record.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "response recommendation"
+    },
+    {
+      "id": "R36",
+      "conditions": [
+        {
+          "fact": "priority_critical",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "action_preserve_evidence",
+      "explanation": "Record timestamps, affected assets and original alerts; preserve relevant logs with an evidence handling record.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "response recommendation"
+    },
+    {
+      "id": "R37",
+      "conditions": [
+        {
+          "fact": "priority_critical",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "action_escalate",
+      "explanation": "Notify the incident lead promptly and coordinate operational decisions with the affected service owners.",
+      "sources": [
+        "S1",
+        "P1"
+      ],
+      "kind": "response recommendation"
+    },
+    {
+      "id": "R38",
+      "conditions": [
+        {
+          "fact": "data_exfiltration",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "action_review_transfer",
+      "explanation": "Ask authorized responders to validate and restrict the suspect transfer, preserve transfer logs and assess the data involved.",
+      "sources": [
+        "S5",
+        "P1"
+      ],
+      "kind": "response recommendation"
+    },
+    {
+      "id": "R39",
+      "conditions": [
+        {
+          "fact": "denial_of_service",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "action_availability",
+      "explanation": "Coordinate with the network team and service provider to validate the traffic and apply approved availability protections.",
+      "sources": [
+        "S6",
+        "P1"
+      ],
+      "kind": "response recommendation"
+    },
+    {
+      "id": "R40",
+      "conditions": [
+        {
+          "fact": "ransomware",
+          "value": "yes"
+        },
+        {
+          "fact": "backup_available",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "action_recovery",
+      "explanation": "After containment and investigation, validate isolated backups and plan an approved clean recovery.",
+      "sources": [
+        "S2",
+        "P1"
+      ],
+      "kind": "response recommendation"
+    },
+    {
+      "id": "R41",
+      "conditions": [
+        {
+          "fact": "ransomware",
+          "value": "yes"
+        },
+        {
+          "fact": "backup_available",
+          "value": "no"
+        }
+      ],
+      "conclusion": "action_recovery_gap",
+      "explanation": "Escalate the absence of a known usable backup to the recovery lead; assess recovery options before any destructive action.",
+      "sources": [
+        "S2",
+        "P1"
+      ],
+      "kind": "response recommendation"
+    },
+    {
+      "id": "R42",
+      "conditions": [
+        {
+          "fact": "malware",
+          "value": "yes"
+        },
+        {
+          "fact": "security_disabled",
+          "value": "yes"
+        }
+      ],
+      "conclusion": "action_review_controls",
+      "explanation": "Investigate the disabled controls and associated changes; restore protection with responder approval.",
+      "sources": [
+        "S2",
+        "P1"
+      ],
+      "kind": "response recommendation"
+    }
+  ],
+  "categories": [
+    "phishing",
+    "credential_exposure",
+    "malware",
+    "ransomware",
+    "brute_force",
+    "account_compromise",
+    "data_exfiltration",
+    "denial_of_service",
+    "widespread_malware"
+  ]
+}

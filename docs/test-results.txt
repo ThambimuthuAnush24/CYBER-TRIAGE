@@ -1,0 +1,28 @@
+test_all_alternative_rules_are_recorded (test_engine.EngineTests.test_all_alternative_rules_are_recorded) ... ok
+test_all_unknown_and_all_no (test_engine.EngineTests.test_all_unknown_and_all_no) ... ok
+test_every_rule_can_fire (test_engine.EngineTests.test_every_rule_can_fire) ... ok
+test_forward_backward_equivalence (test_engine.EngineTests.test_forward_backward_equivalence) ... ok
+test_forward_rounds_and_trace (test_engine.EngineTests.test_forward_rounds_and_trace) ... ok
+test_negative_is_not_unknown (test_engine.EngineTests.test_negative_is_not_unknown) ... ok
+test_new_case_does_not_inherit_facts (test_engine.EngineTests.test_new_case_does_not_inherit_facts) ... ok
+test_prolog_python_parity (test_engine.EngineTests.test_prolog_python_parity) ... skipped 'SWI-Prolog is not installed'
+test_questions_are_relevant (test_engine.EngineTests.test_questions_are_relevant) ... ok
+test_reject_bad_input (test_engine.EngineTests.test_reject_bad_input) ... ok
+test_repeated_inputs_are_deterministic (test_engine.EngineTests.test_repeated_inputs_are_deterministic) ... ok
+test_requirement_counts (test_engine.EngineTests.test_requirement_counts) ... ok
+test_scenarios (test_engine.EngineTests.test_scenarios) ... ok
+test_unique_and_referenced_rules (test_engine.EngineTests.test_unique_and_referenced_rules) ... ok
+test_unknown_backup_cannot_trigger_negative_rule (test_engine.EngineTests.test_unknown_backup_cannot_trigger_negative_rule) ... ok
+test_bad_json (test_http.HTTPTests.test_bad_json) ... ok
+test_bad_type (test_http.HTTPTests.test_bad_type) ... ok
+test_duplicate_keys (test_http.HTTPTests.test_duplicate_keys) ... ok
+test_interface_assets (test_http.HTTPTests.test_interface_assets) ... ok
+test_missing_and_traversal (test_http.HTTPTests.test_missing_and_traversal) ... ok
+test_origin_rejected (test_http.HTTPTests.test_origin_rejected) ... ok
+test_oversized_input (test_http.HTTPTests.test_oversized_input) ... ok
+test_post_analysis (test_http.HTTPTests.test_post_analysis) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.577s
+
+OK (skipped=1)
