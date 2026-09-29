@@ -1,6 +1,17 @@
 # Cybersecurity Incident Triage Expert System
 
-A local, explainable assignment project with 32 observation definitions, 42 referenced production rules, forward chaining, backward chaining, a browser interface and automated tests. Classifications are suspected incidents, not forensic confirmation.
+A local and static-hosted, explainable assignment project with 32 observation definitions, 42 referenced production rules, forward chaining, backward chaining, a browser interface and automated tests. Classifications are suspected incidents, not forensic confirmation.
+
+## Deploy to GitHub Pages
+
+See **[DEPLOY_GITHUB_PAGES.md](DEPLOY_GITHUB_PAGES.md)** for the complete upload, setup, preview and troubleshooting guide.
+
+1. Upload the contents of this project folder to a GitHub repository, including `.github/workflows/deploy-pages.yml`.
+2. Set **Settings → Pages → Source → GitHub Actions**.
+3. Run **Deploy CYBER TRIAGE to GitHub Pages** from the Actions tab on `main`, or push a new commit to `main`.
+4. Open the website URL shown by the successful deployment.
+
+Pages runs a browser JavaScript implementation of the same rules; it does not run Python or Prolog. The original local modes remain available below. No backend hosting or API key is needed for the Pages edition. Its automated validation results are in [docs/github-pages-validation.txt](docs/github-pages-validation.txt).
 
 ## Quick start on Windows
 
@@ -13,7 +24,7 @@ A local, explainable assignment project with 32 observation definitions, 42 refe
 
 macOS/Linux: `python3 server.py --engine python` or `./start.sh` after installing Python 3.10+.
 
-No Python packages, API key, database or internet connection are needed at runtime. Python's standard library is sufficient.
+For this local mode, no Python packages, API key, database or internet connection are needed at runtime. Python's standard library is sufficient.
 
 ## Preferred Prolog mode
 
@@ -37,6 +48,15 @@ py -3 -m unittest discover -s tests -v
 
 `test_prolog_python_parity` automatically executes when `swipl` is on PATH. It compares both engines for all scenario/derived-goal combinations, including proof trees and rule traces. Do not present a skipped test as a pass. Existing observed results are in `docs/test-results.txt`; scenario-level expected/actual results are in `docs/scenario-results.json`.
 
+To verify the Pages edition locally, install Node.js 24 and ensure Python is available. In a Windows PowerShell terminal:
+
+```powershell
+$env:PYTHON = (py -3 -c "import sys; print(sys.executable)")
+node --test tests/test_browser.mjs
+```
+
+On macOS/Linux, run `node --test tests/test_browser.mjs`; it uses `python3` by default. The suite compares full JavaScript and Python results across 6,210 consultations, exercises every rule, and checks static HTTP loading at a repository subpath. No npm installation is needed. The deployment workflow runs both suites automatically; a failing test blocks deployment.
+
 ## How to use
 
 - **Yes:** positive observation supported by evidence.
@@ -55,6 +75,11 @@ py -3 -m unittest discover -s tests -v
 - `engine.py`: portable Python production-rule shell and validation.
 - `server.py`: local-only HTTP adapter; explicit Prolog/portable selection.
 - `web/`: HTML, CSS and JavaScript user interface.
+- `web/engine.mjs`: browser implementation of the shared rule logic.
+- `web/runtime.mjs`: explicit selection of browser or local server transport.
+- `scripts/build_pages.py`: generates the eight static assets in `dist/`.
+- `.github/workflows/deploy-pages.yml`: GitHub Pages verification and deployment.
+- `DEPLOY_GITHUB_PAGES.md`: deployment instructions and changed-file list.
 - `scenarios.json`: 12 fictional scenarios and independent expected outcomes.
 - `examples/ransomware-full.json`: a fully instantiated 32-fact fictional consultation.
 - `tests/`: engine, scenario, API and optional Prolog parity tests.
@@ -62,7 +87,7 @@ py -3 -m unittest discover -s tests -v
 
 ## Editing the knowledge base
 
-Add or edit rules in `knowledge.json`. Rule conditions are a conjunction; separate rules express alternatives. Conditions use only a known observation or derived fact and `yes`/`no`. Use negative values only for observations. Derived conclusions are positive atoms. Keep the dependency graph acyclic, attach a source and explain local policy assumptions. Restart the server and re-run tests after any edit. Add a case that exercises each changed rule. Existing rules have no numeric certainty factors; no output is a calibrated probability.
+Add or edit rules in `knowledge.json`. Rule conditions are a conjunction; separate rules express alternatives. Conditions use only a known observation or derived fact and `yes`/`no`. Use negative values only for observations. Derived conclusions are positive atoms. Keep the dependency graph acyclic, attach a source and explain local policy assumptions. Restart the local server or rebuild/redeploy the Pages edition and re-run tests after any edit. Add a case that exercises each changed rule. Existing rules have no numeric certainty factors; no output is a calibrated probability.
 
 ## Local operation and limits
 

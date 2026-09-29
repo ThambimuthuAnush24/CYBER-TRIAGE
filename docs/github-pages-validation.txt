@@ -1,0 +1,53 @@
+CYBER TRIAGE — GitHub Pages edition
+Validation performed during package preparation: 2026-09-29
+
+INPUT
+Current user attachment: Cybersecurity_Incident_Triage_Source(1).zip
+Knowledge base: version 1.0.0, 32 observations, 42 rules, 12 scenarios.
+
+RESULTS
+1. python3 -m unittest discover -s tests -v
+   23 tests discovered: 22 passed, 1 skipped, 0 failed.
+   Skipped: test_prolog_python_parity (SWI-Prolog not installed).
+   The HTTP suite includes the new engine.mjs and runtime.mjs routes.
+
+2. node --test tests/test_browser.mjs
+   21 tests passed, 0 failed, 0 skipped.
+   Count includes 9 top-level tests and 12 scenario subtests.
+   - All 12 scenarios meet their independent expected outcomes.
+   - Each of the 42 production rules can fire and prove its goal.
+   - 6,210 complete JavaScript/Python result comparisons passed:
+     115 evidence sets x 54 observation/derived goals.
+     Evidence sets: 12 scenarios, empty input, all Unknown, all No,
+     and 100 reproducible pseudorandom Yes/No/Unknown cases.
+     Full results were canonically serialized and SHA-256 compared.
+     Only the engine label was excluded from comparison.
+   - Unknown does not satisfy a No condition, including backup rules.
+   - Invalid input is rejected; consultations do not inherit prior state.
+   - Mutating a returned trace does not change the knowledge base.
+   - Local-server API transport and error propagation remain compatible.
+   - Static-data failures and invalid modes are surfaced as errors.
+   - The build produces exactly the eight intended static files.
+   - HTTP asset/data loading succeeds under /cyber-triage/.
+   - Analyzing all sample scenarios sends no additional HTTP requests.
+
+3. JavaScript syntax checks
+   node --check web/app.js      PASS
+   node --check web/engine.mjs  PASS
+   node --check web/runtime.mjs PASS
+
+4. Workflow configuration
+   YAML parsing passed. Main branch trigger and build/deploy dependency
+   verified. Build has contents:read and pages:read; deployment has
+   pages:write and id-token:write, with the github-pages environment.
+
+WHAT WAS NOT EXECUTED
+- No deployment to the user's GitHub repository was performed.
+- GitHub-hosted workflow execution still needs to succeed in that account.
+- Interactive browser clicks and visual rendering were not executed.
+  The HTTP/module transport and inference were tested programmatically.
+- SWI-Prolog was unavailable; a skipped parity test is not a pass.
+- Sampled parity checks are not exhaustive formal verification.
+
+The unchanged original validation notes remain in docs/test-results.txt.
+Follow DEPLOY_GITHUB_PAGES.md to publish and perform the manual UI checks.

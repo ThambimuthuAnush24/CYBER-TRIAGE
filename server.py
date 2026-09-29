@@ -22,9 +22,9 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         path=urlsplit(self.path).path
         if path=='/api/meta': return self.send(200,dict(kb=KB,scenarios=json.loads((ROOT/'scenarios.json').read_text()),engine=self.server.engine_name))
-        routes={'/':'index.html','/app.js':'app.js','/style.css':'style.css'}
+        routes={'/':'index.html','/app.js':'app.js','/style.css':'style.css','/engine.mjs':'engine.mjs','/runtime.mjs':'runtime.mjs'}
         if path not in routes:return self.send(404,dict(error='Not found'))
-        name=routes[path]; types={'html':'text/html; charset=utf-8','js':'text/javascript; charset=utf-8','css':'text/css; charset=utf-8'}
+        name=routes[path]; types={'html':'text/html; charset=utf-8','js':'text/javascript; charset=utf-8','mjs':'text/javascript; charset=utf-8','css':'text/css; charset=utf-8'}
         self.send(200,(ROOT/'web'/name).read_bytes(),types[name.split('.')[-1]])
     def do_POST(self):
         if urlsplit(self.path).path!='/api/analyze':return self.send(404,dict(error='Not found'))

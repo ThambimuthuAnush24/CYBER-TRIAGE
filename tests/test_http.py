@@ -17,7 +17,7 @@ class HTTPTests(unittest.TestCase):
   except urllib.error.HTTPError as e:r=e
   with r:return r.code,r.read(),r.headers
  def test_interface_assets(self):
-  for path in ['/','/app.js','/style.css','/api/meta']:
+  for path in ['/','/app.js','/style.css','/engine.mjs','/runtime.mjs','/api/meta']:
    code,body,h=self.request(path);self.assertEqual(code,200);self.assertTrue(body);self.assertIn('Content-Security-Policy',h)
  def test_post_analysis(self):
   code,body,_=self.request('/api/analyze',b'{"facts":{"malware_alert":"yes"}}',{'Content-Type':'application/json'})

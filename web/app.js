@@ -1,5 +1,7 @@
+import {loadRuntime} from './runtime.mjs';
 'use strict';
-let meta, result, revision=0;
+let meta, result, runtime, revision=0;
+const mode=document.documentElement.dataset.mode;
 const $=s=>document.querySelector(s);
 const human=s=>s.replaceAll('_',' ');
 function el(tag,text,cls){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;}
@@ -16,9 +18,9 @@ function render(r){
  const exportButton=el('button','Export case and reasoning','secondary export');exportButton.onclick=()=>{const blob=new Blob([JSON.stringify({...r,exported_at:new Date().toISOString()},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=el('a');a.href=url;a.download='cyber-triage-case.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};out.append(exportButton);
  $('#proof').replaceChildren(proofNode(r.proof));if(r.questions.length){const x=el('div');x.append(el('h3','Evidence to collect for this goal'));const ul=el('ul',undefined,'actions');r.questions.forEach(q=>ul.append(el('li',meta.kb.facts.find(f=>f.id===q).label)));x.append(ul);$('#proof').append(x);}
 }
-async function run(){const at=revision;$('#error').textContent='';$('#analyze').disabled=$('#prove').disabled=true;try{const response=await fetch('/api/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({facts:inputFacts(),goal:$('#goal').value})});const data=await response.json();if(!response.ok)throw Error(data.error||'Analysis failed');if(at!==revision){$('#error').textContent='Inputs changed during analysis. Please analyze again.';return;}result=data;render(data);}catch(e){$('#error').textContent=e.message;}finally{$('#analyze').disabled=$('#prove').disabled=false;}}
+async function run(){const at=revision;$('#error').textContent='';$('#analyze').disabled=$('#prove').disabled=true;try{const data=await runtime.analyze({facts:inputFacts(),goal:$('#goal').value});if(at!==revision){$('#error').textContent='Inputs changed during analysis. Please analyze again.';return;}result=data;render(data);}catch(e){$('#error').textContent=e.message;}finally{$('#analyze').disabled=$('#prove').disabled=false;}}
 function renderRules(){const term=$('#search').value.toLowerCase();$('#rules').replaceChildren();meta.kb.rules.filter(r=>JSON.stringify(r).toLowerCase().includes(term)).forEach(r=>{const row=el('div',undefined,'rule');row.append(el('strong',r.id+' · '+human(r.conclusion)),el('p','IF '+r.conditions.map(c=>human(c.fact)+' = '+c.value).join(' AND ')),el('code','THEN '+human(r.conclusion)),el('p',r.explanation),el('small',r.kind+' · References '+r.sources.join(', ')));$('#rules').append(row);});}
-async function init(){try{const response=await fetch('/api/meta');if(!response.ok)throw Error('Unable to load the knowledge base');meta=await response.json();$('#engine').textContent=meta.engine;
+async function init(){try{runtime=await loadRuntime(mode,document.baseURI);meta=runtime.meta;if(mode==='browser')$('#privacy').textContent='Analysis runs in this browser. Your entered observations and results stay in memory and are not sent to an analysis server or saved automatically. Export downloads the case to your device. GitHub Pages serves the application files and can log ordinary page requests. Opening a source link visits that external website. The system does not scan devices or execute response actions.';$('#engine').textContent=meta.engine;
  const groups=[...new Set(meta.kb.facts.map(f=>f.group))];groups.forEach((g,i)=>{const d=el('details');d.open=i===0;d.append(el('summary',g+' · '+meta.kb.facts.filter(f=>f.group===g).length+' observations'));meta.kb.facts.filter(f=>f.group===g).forEach(f=>{const row=el('div',undefined,'question'),label=el('label',f.label);label.htmlFor=f.id;label.append(el('small',f.help));const select=el('select');select.id=f.id;select.dataset.fact=f.id;['unknown','yes','no'].forEach(v=>{const o=el('option',v[0].toUpperCase()+v.slice(1));o.value=v;select.append(o);});select.onchange=changed;row.append(label,select);d.append(row);});$('#questions').append(d);});
  meta.scenarios.forEach((s,i)=>{const o=el('option',s.name);o.value=String(i);$('#scenario').append(o);});
  [...meta.kb.categories,'priority_critical','action_isolate'].forEach(g=>{const o=el('option',human(g));o.value=g;$('#goal').append(o);});$('#goal').value='ransomware';
@@ -26,5 +28,6 @@ async function init(){try{const response=await fetch('/api/meta');if(!response.o
  $('#reset').onclick=()=>{$('#scenario').value='';setFacts({});$('#error').textContent='';};$('#goal').onchange=()=>{revision++;$('#proof').replaceChildren(el('p','Goal changed. Check the hypothesis again.','stale'));};$('#analyze').onclick=$('#prove').onclick=run;
  document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.view').forEach(v=>v.classList.toggle('hidden',v.id!==b.dataset.tab));document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));});
  $('#search').oninput=renderRules;renderRules();meta.kb.sources.forEach(s=>{const d=el('div',undefined,'source');d.append(el('strong',s.id+' · '+s.title+' ('+s.year+')'),el('p',s.scope));if(s.url){const a=el('a',s.url);a.href=s.url;a.target='_blank';a.rel='noopener noreferrer';d.append(a);}$('#sources').append(d);});
- }catch(e){$('#engine').textContent='Engine unavailable';$('#error').textContent=e.message+'; start server.py and reload.';}}
+ $('#analyze').disabled=$('#prove').disabled=false;
+ }catch(e){$('#engine').textContent='Engine unavailable';$('#error').textContent=e.message+(mode==='browser'?' Check that the Pages build succeeded and reload using the website URL.':' Start server.py and reload using its local URL.');}}
 init();
